@@ -13,7 +13,7 @@ _LOGGER = logging.getLogger(__name__)
 
 class Light:
     def __init__(self, ip, position, port=38899):
-        self.position = position
+        self.p = position
         self.ip = ip
         self.port = port
         self.state = None
