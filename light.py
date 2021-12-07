@@ -65,7 +65,7 @@ class Light:
         next_frame_time = time.perf_counter()
 
         while True:
-            next_frame_time += 0.05
+            next_frame_time += 0.025
             now = time.perf_counter()
             try:
                 data, remote_addr = await asyncio.wait_for(

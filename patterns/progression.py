@@ -9,12 +9,12 @@ from operator import add
 
 
 async def progression(lights):
-    loop = PeriodicLoop(0.1, 10)
+    loop = PeriodicLoop(0.5, 10)
     lights = sorted(lights, key=lambda light: light.p[0] + light.p[1])
     index = 0
     while not loop.done():
-        lights[(index - 12) % 17].set_state(off)
-        lights[index % 17].set_state(on)
+        lights[(index - 6) % 18].set_state(off)
+        lights[index % 18].set_state(on)
         index += 1
         await loop.next()
 
