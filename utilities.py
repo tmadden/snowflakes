@@ -4,17 +4,22 @@ import time
 
 from pywizlight.rgbcw import rgb2rgbcw
 
+
 def index(p):
     return p[0] * 4 + p[1]
+
 
 def in_bounds(p):
     return p[0] >= 0 and p[0] < 4 and p[1] >= 0 and p[1] < 4
 
+
 def flipped(v):
     return [-v[0], -v[1]]
 
+
 def equal(a, b):
     return round(a[0]) == round(b[0]) and round(a[1]) == round(b[1])
+
 
 def reset_all(lights):
     for light in lights:
@@ -40,8 +45,10 @@ class PeriodicLoop:
             return self.next_frame_time >= self.finish_time
         return False
 
+
 def raw_rgb(r, g, b):
     return {'r': r, 'g': g, 'b': b}
+
 
 def rgb(r, g, b):
     rgb, cw = rgb2rgbcw((r, g, b))
@@ -52,8 +59,23 @@ def rgb(r, g, b):
         state['w'] = cw
     return state
 
+
 def color(c):
     return rgb(round(c.red * 255), round(c.green * 255), round(c.blue * 255))
 
+
+def dim(c, intensity):
+    return {**c, 'brightness': intensity}
+
+
 on = {'c': 255, 'w': 255}
 off = None
+
+cold_white = {'c': 255}
+light_gorgeous = rgb(128, 0, 255)
+gorgeous = rgb(160, 0, 255)
+snowy = raw_rgb(32, 0, 255)
+pretty = raw_rgb(255, 0, 192)
+good_purple = raw_rgb(123, 0, 255)
+
+palette = [light_gorgeous, gorgeous, snowy, pretty, good_purple]

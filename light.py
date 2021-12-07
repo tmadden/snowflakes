@@ -28,7 +28,6 @@ class Light:
 
     def generate_update_message(self):
         if self.state:
-            # if not self.previous_state:
             params = self.state
             if 'brightness' not in params:
                 params['brightness'] = 255
@@ -38,10 +37,6 @@ class Light:
                 'id': self.next_message_id,
                 'params': params
             })
-            # else:
-            #     message = PilotBuilder(rgb=(255, 255, 255),
-            #                         brightness=self.state).set_state_message(
-            #                             self.next_message_id)
         else:
             message = json.dumps({
                 'method': 'setPilot',
@@ -65,7 +60,7 @@ class Light:
         next_frame_time = time.perf_counter()
 
         while True:
-            next_frame_time += 0.025
+            next_frame_time += 0.05
             now = time.perf_counter()
             try:
                 data, remote_addr = await asyncio.wait_for(
