@@ -6,7 +6,11 @@ from utilities import reset_all
 
 from light import Light
 
-from patterns.progression import progression
+from patterns.progression import x_progression, y_progression
+from patterns.pulsate import pulsate
+from patterns.twinkle import twinkle
+from patterns.fairies import fairies
+from patterns.screens import screens
 
 test_pattern = None
 
@@ -27,7 +31,7 @@ async def control_loop(lights):
         await asyncio.sleep(1)
     else:
         while True:
-            all_patterns = [progression]
+            all_patterns = [fairies]
             for pattern in all_patterns:
                 reset_all(lights)
                 await pattern(lights)

@@ -76,14 +76,14 @@ warm_white = {'w': 255}
 
 light_gorgeous = rgb(128, 0, 255)
 gorgeous = rgb(160, 0, 255)
-snowy = raw_rgb(32, 0, 255)
-pretty = raw_rgb(255, 0, 192)
+snowy = rgb(32, 32, 255)
+blue_snowy = rgb(8, 8, 255)
+pretty = rgb(255, 0, 64)
 good_purple = raw_rgb(123, 0, 255)
 
 palette = [light_gorgeous, gorgeous, snowy, pretty, good_purple]
 
-# prominent_lights = ['5l4', '2r8', '4h4']
-prominent_lights = [14, 16, 9]
+prominent_lights = [2, 14, 15]
 
 from math import sqrt
 
