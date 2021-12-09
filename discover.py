@@ -9,13 +9,13 @@ async def main():
         lights = yaml.safe_load(file)
 
     bulbs = await discovery.discover_lights(broadcast_space="192.168.11.255")
-    print([(bulb.ip, bulb.mac) for bulb in bulbs])
+    # print([(bulb.ip, bulb.mac) for bulb in bulbs])
 
-    ips = {}
+    ips = []
     for mac, pos in lights.items():
         print(mac)
         ip = next(bulb.ip for bulb in bulbs if bulb.mac == mac)
-        ips[ip] = pos
+        ips.append({'ip': ip, 'pos': pos})
 
     with open('ips.yml', 'w') as file:
         yaml.dump(ips, file, default_flow_style=False)

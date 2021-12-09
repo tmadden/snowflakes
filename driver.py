@@ -35,9 +35,11 @@ async def control_loop(lights):
 
 async def main():
     with open("ips.yml", "r") as file:
-        ips = yaml.safe_load(file)
+        entries = yaml.safe_load(file)
 
-    lights = [Light(ip, decode_position(pos)) for ip, pos in ips.items()]
+    lights = [
+        Light(entry['ip'], decode_position(entry['pos'])) for entry in entries
+    ]
 
     await asyncio.gather(*[light.connect() for light in lights])
 
