@@ -11,6 +11,7 @@ from patterns.pulsate import pulsate
 from patterns.twinkle import twinkle
 from patterns.fairies import fairies
 from patterns.screens import screens
+from patterns.slumber import slumber
 
 test_pattern = None
 
@@ -31,7 +32,7 @@ async def control_loop(lights):
         await asyncio.sleep(1)
     else:
         while True:
-            all_patterns = [fairies]
+            all_patterns = [slumber, fairies]
             for pattern in all_patterns:
                 reset_all(lights)
                 await pattern(lights)
