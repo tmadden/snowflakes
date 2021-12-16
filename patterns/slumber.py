@@ -12,7 +12,11 @@ def inside_hours():
     return False
 
 
-important_times = [datetime.time(17, 30, 0), datetime.time(19, 35, 0), datetime.time(19, 45, 0)]
+important_times = [
+    datetime.time(17, 30, 0),
+    datetime.time(19, 35, 0),
+    datetime.time(19, 45, 0)
+]
 important_time_index = 0
 
 
