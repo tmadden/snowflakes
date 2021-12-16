@@ -26,6 +26,9 @@ def reset_all(lights):
         light.set_state(off)
 
 
+from patterns.slumber import important_time_passed
+
+
 class PeriodicLoop:
     def __init__(self, period, length=None):
         self.period = period
@@ -41,6 +44,8 @@ class PeriodicLoop:
         await asyncio.sleep(self.next_frame_time - now)
 
     def done(self):
+        if important_time_passed():
+            return True
         if self.finish_time:
             return self.next_frame_time >= self.finish_time
         return False

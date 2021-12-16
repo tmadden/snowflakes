@@ -11,9 +11,14 @@ from patterns.pulsate import pulsate
 from patterns.twinkle import twinkle
 from patterns.fairies import fairies
 from patterns.screens import screens
-from patterns.slumber import slumber
+from patterns.slumber import acknowledge_important_time, slumber
 
 test_pattern = None
+
+from patterns.slumber import important_time_passed
+
+while important_time_passed():
+    acknowledge_important_time()
 
 
 def decode_position(pos):
@@ -32,9 +37,12 @@ async def control_loop(lights):
         await asyncio.sleep(1)
     else:
         while True:
-            all_patterns = [slumber, fairies]
+            all_patterns = [fairies]
             for pattern in all_patterns:
-                reset_all(lights)
+                if important_time_passed():
+                    acknowledge_important_time()
+                    #print('important time passed')
+                    await pulsate(lights)
                 await pattern(lights)
 
 

@@ -9,10 +9,17 @@ from operator import add
 
 
 async def pulsate(lights):
-    loop = PeriodicLoop(0.8, 200)
+    loop = PeriodicLoop(0.2, 10)
+
+    palette = [
+        light_gorgeous, warm_white, gorgeous, snowy, cold_white, pretty,
+        good_purple
+    ]
 
     index = 0
     while not loop.done():
+        reset_all(lights)
+        await loop.next()
         for light in lights:
             light.set_state(palette[index % len(palette)])
         await loop.next()
