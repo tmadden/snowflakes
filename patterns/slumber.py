@@ -7,17 +7,15 @@ from utilities import *
 
 def inside_hours():
     now = datetime.datetime.now().time()
-    if now > datetime.time(16, 0, 0, 0) and now < datetime.time(22, 0, 0, 0):
+    if now >= datetime.time(16, 0, 0) and now < datetime.time(22, 0, 0):
         return True
     return False
 
 
-important_times = [
-    datetime.time(17, 30, 0),
-    datetime.time(19, 35, 0),
-    datetime.time(19, 45, 0)
-]
+important_times = []
 important_time_index = 0
+
+import itertools
 
 
 def acknowledge_important_time():
@@ -30,11 +28,13 @@ def acknowledge_important_time():
 
 
 def important_time_passed():
+    return False
+
     global important_time_index
     #print('important_time_passed?')
     #print('important_time_index: {}'.format(important_time_index))
     now = datetime.datetime.now().time()
-    for index, time in enumerate(important_times):
+    for index, time in enumerate(itertools.cycle(important_times)):
         #print(index)
         #print(time)
         #print(now)

@@ -11,7 +11,7 @@ async def fairies(lights):
     for light in lights:
         light.set_state(background_color)
 
-    loop = PeriodicLoop(0.15, 600000)
+    loop = PeriodicLoop(0.15, 120)
 
     indices = [0, 1]
     while not loop.done():

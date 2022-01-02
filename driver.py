@@ -6,11 +6,12 @@ from utilities import reset_all
 
 from light import Light
 
-from patterns.progression import x_progression, y_progression
+from patterns.progression import progression
 from patterns.pulsate import pulsate
 from patterns.twinkle import twinkle
 from patterns.fairies import fairies
 from patterns.screens import screens
+from patterns.freeze import freeze
 from patterns.slumber import acknowledge_important_time, slumber
 
 test_pattern = None
@@ -37,12 +38,12 @@ async def control_loop(lights):
         await asyncio.sleep(1)
     else:
         while True:
-            all_patterns = [fairies]
+            all_patterns = [fairies, freeze]
             for pattern in all_patterns:
                 if important_time_passed():
                     acknowledge_important_time()
-                    #print('important time passed')
-                    await pulsate(lights)
+                    # print('important time passed')
+                    # await pulsate(lights)
                 await pattern(lights)
 
 
